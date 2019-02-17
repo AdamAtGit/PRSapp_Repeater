@@ -16,9 +16,9 @@
 
     <Grid Height="640" Width="360" Background="Gray">
         <Grid.Resources>
-          <Style TargetType="RadioButton">
+          <!--<Style TargetType="RadioButton">
             <Setter Property="d:IsHidden" Value="True"/>
-        </Style>
+        </Style>-->
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
