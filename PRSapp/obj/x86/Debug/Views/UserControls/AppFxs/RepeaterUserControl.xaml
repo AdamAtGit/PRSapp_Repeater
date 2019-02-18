@@ -15,6 +15,11 @@
     </UserControl.Resources>
 
     <Grid Height="640" Width="360" Background="Gray">
+        <Grid.Resources>
+          <!--<Style TargetType="RadioButton">
+            <Setter Property="d:IsHidden" Value="True"/>
+        </Style>-->
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,7 +31,10 @@
                      Margin="0 5"/>
             <TextBox x:ConnectionId='10' x:Name="boxTtsRaw" Height="250" Width="350" TextWrapping="Wrap"
                      AcceptsReturn="True"
-                     Text="Set Alarms for 10:30.                                            Divide into 3rds.                                                   Wake and shower by 11.                                      Call VA Dental.  Call Beach side Vision.                4:30 Break away and  Walk, squats 32, shower dressed and programing inside 2 hours." 
+                     Text=
+                     "Set Alarms for 1 p.m.   
+                     Break Away. 
+                     Cancellation-Token-Source to stop async tasks." 
                      IsSpellCheckEnabled="True"
                      HorizontalAlignment="Center" VerticalAlignment="Top"
                      Margin="0 5"/>
@@ -37,13 +45,13 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <AppBarButton x:ConnectionId='3'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"
                                                                 
-                         d:Visibility="Collapsed" Margin="0 0 0 10" Height="54"/>
+                           Margin="0 0 0 10" Height="54"/>
 
             
             
             <AppBarButton x:ConnectionId='4'  x:Name="BtnStopPauseRepeatMediaOutAsync" Label="Stop" Icon="Stop"
-                          
-                          Visibility="Visible" Margin="0 0 0 10" Height="54"/> <!--Click="BtnStopPauseRepeatMediaOutAsync_Click"-->
+                                                                       
+                          Visibility="Collapsed" Margin="0 0 0 10" Height="54"/> <!---->
 
             
             

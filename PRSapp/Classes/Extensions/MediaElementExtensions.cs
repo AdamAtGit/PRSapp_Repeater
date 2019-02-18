@@ -35,7 +35,7 @@ namespace PRSapp.Classes.Extensions
             mediaElement.SetSource(stream, string.Empty);
             mediaElement.Play();
 
-            await taskCompleted.Task;
+            await taskCompleted.Task;//ARS after this line it has stopped
             mediaElement.MediaEnded -= endOfPlayHandler;
         }
     }
