@@ -58,6 +58,7 @@ namespace PRSapp.Views.UserControls.AppFxs
             }
             else
             {
+
                 Debug.Write("Hit tgsReapeats.IsOn//when is false");
             }
             repetitions = Convert.ToInt32(boxRepetitions.Text.Trim());
@@ -114,7 +115,7 @@ namespace PRSapp.Views.UserControls.AppFxs
             return (stream);
         }
 
-        async Task SpeakTextAsync(string text, MediaElement mediaElement,CancellationToken token)
+        async Task SpeakTextAsync(string text, MediaElement mediaElement)
         {
             //TODO: ARS use link below to stop async tasks
             //https://stackoverflow.com/questions/15614991/simply-stop-an-async-method

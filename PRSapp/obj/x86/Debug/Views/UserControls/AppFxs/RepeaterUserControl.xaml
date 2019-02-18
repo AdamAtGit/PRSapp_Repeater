@@ -5,21 +5,13 @@
     xmlns:local="using:PRSapp.Views.UserControls.AppFxs"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:cmds="using:PRSapp.ViewModels.Commands"
-    mc:Ignorable="d"
-    d:DesignHeight="640"
-    d:DesignWidth="360">
+    xmlns:vm="using:PRSapp.ViewModels">
 
     <UserControl.Resources>
-        
+        <vm:RepeaterViewModel x:Key="repeaterViewModel"/>
     </UserControl.Resources>
-
-    <Grid Height="640" Width="360" Background="Gray">
-        <Grid.Resources>
-          <!--<Style TargetType="RadioButton">
-            <Setter Property="d:IsHidden" Value="True"/>
-        </Style>-->
-        </Grid.Resources>
+    <Grid Height="640" Width="360" Background="Gray"
+          DataContext="{Binding Source={StaticResource repeaterViewModel}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -31,27 +23,22 @@
                      Margin="0 5"/>
             <TextBox x:ConnectionId='10' x:Name="boxTtsRaw" Height="250" Width="350" TextWrapping="Wrap"
                      AcceptsReturn="True"
-                     Text=
-                     "Set Alarms for 1 p.m.   
+                     Text= "Set Alarms for 1 p.m.   
                      Break Away. 
                      Cancellation-Token-Source to stop async tasks." 
                      IsSpellCheckEnabled="True"
-                     HorizontalAlignment="Center" VerticalAlignment="Top"
-                     Margin="0 5"/>
-           
+                     HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 5"/>
         </StackPanel>
         
         <!--2nd row--> 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <AppBarButton x:ConnectionId='3'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"
-                                                                
-                           Margin="0 0 0 10" Height="54"/>
+            <AppBarButton x:ConnectionId='3'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"                    
+                                                               
+                           Margin="0 0 0 10" Height="54"/> <!--Command="{Binding RepeatMediaOutAsyncCommand}"-->
 
-            
-            
             <AppBarButton x:ConnectionId='4'  x:Name="BtnStopPauseRepeatMediaOutAsync" Label="Stop" Icon="Stop"
                                                                        
-                          Visibility="Collapsed" Margin="0 0 0 10" Height="54"/> <!---->
+                          Visibility="Collapsed" Margin="0 0 0 10" Height="54"/> <!--Test commit n push through Git Bash-->
 
             
             

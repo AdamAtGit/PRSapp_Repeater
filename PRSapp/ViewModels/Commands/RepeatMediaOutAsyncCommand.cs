@@ -9,6 +9,13 @@ namespace PRSapp.ViewModels.Commands
 {
     public class RepeatMediaOutAsyncCommand : ICommand
     {
+        public RepeaterViewModel ViewModel { get; set; }
+
+        public RepeatMediaOutAsyncCommand(RepeaterViewModel viewModel)
+        {
+            ViewModel = viewModel;
+        }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
