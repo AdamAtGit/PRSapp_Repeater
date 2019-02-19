@@ -50,11 +50,12 @@ namespace PRSapp.Views.UserControls.AppFxs
 
         private async void BtnRepeatMediaOutAsync_Click(object sender, RoutedEventArgs e)
         {
+
             BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
             BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
             if(TgsRepeats.IsOn)
             {
-               // Debug.Write("Hit tgsReapeats.IsOn//when is true");
+                tbStatus.Text = (i + 1).ToString();
             }
             else
             {
@@ -69,8 +70,10 @@ namespace PRSapp.Views.UserControls.AppFxs
                 interval = new TimeSpan(0, 0, intervalinSecs);
                 repeatDispTimer.Interval = interval;
                 timesToTick = (repetitions - 1);
-            }        
-         
+            }
+
+            //tbStatus.Text = "0";
+            //// 
             BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Orange);
             ttsRaw = boxTtsRaw.Text.Trim();
             try
@@ -87,10 +90,14 @@ namespace PRSapp.Views.UserControls.AppFxs
             Debug.WriteLine("BtnRepeatMediaOutAsync_Click" + timesToTick.ToString());
             Debug.WriteLine("i = " + i.ToString());
 
+            ////tbStatus.Text = (i + 1).ToString();
+
+
             //Stop timer when reps are complete
             i++;
             if (i > timesToTick)
             {
+                tbStatus.Text = "0";
                 repeatDispTimer.Stop();
                 BtnStopPauseRepeatMediaOutAsync.Visibility =  Visibility.Collapsed;
                 BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;             
@@ -132,13 +139,13 @@ namespace PRSapp.Views.UserControls.AppFxs
         private void BtnStopPauseRepeatMediaOutAsync_Click(object sender, RoutedEventArgs e)
         {
             i = 0;
+            tbStatus.Text = "0";
             repeatDispTimer.Stop();
             Debug.WriteLine("tnStopPauseRepeatMediaOutAsync_Click: " + repeatDispTimer.IsEnabled.ToString());
             // DispatcherTimer senderTimer = (DispatcherTimer)sender;
             BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
             BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;           
             BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);        
-
 
         }
 

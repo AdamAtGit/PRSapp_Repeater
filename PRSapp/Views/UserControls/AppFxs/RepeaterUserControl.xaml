@@ -55,7 +55,9 @@
                     Height="Auto" Background="Black">
             <TextBlock Text="Status" FontSize="12" Foreground="WhiteSmoke"
             Height="Auto" Margin="10 0 5 0"/>
-           
+            <TextBlock x:Name="tbStatus" Text="1" FontSize="12" Foreground="WhiteSmoke"
+            Height="Auto" Width="Auto" Margin="10 0 5 0"/>
+
         </StackPanel>
 
         <!--4th row-->
