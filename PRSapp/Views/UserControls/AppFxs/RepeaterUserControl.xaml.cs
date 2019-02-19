@@ -54,12 +54,12 @@ namespace PRSapp.Views.UserControls.AppFxs
             BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
             if(TgsRepeats.IsOn)
             {
-                Debug.Write("Hit tgsReapeats.IsOn//when is true");
+               // Debug.Write("Hit tgsReapeats.IsOn//when is true");
             }
             else
             {
 
-                Debug.Write("Hit tgsReapeats.IsOn//when is false");
+               // Debug.Write("Hit tgsReapeats.IsOn//when is false");
             }
             repetitions = Convert.ToInt32(boxRepetitions.Text.Trim());
             if (i == 0)
@@ -92,10 +92,10 @@ namespace PRSapp.Views.UserControls.AppFxs
             if (i > timesToTick)
             {
                 repeatDispTimer.Stop();
-                BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
-                BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
-                i = 0;
+                BtnStopPauseRepeatMediaOutAsync.Visibility =  Visibility.Collapsed;
+                BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;             
                 BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);
+                i = 0;
             }
             Debug.WriteLine(repeatDispTimer.IsEnabled.ToString());
         }
@@ -133,9 +133,17 @@ namespace PRSapp.Views.UserControls.AppFxs
         {
             i = 0;
             repeatDispTimer.Stop();
+            Debug.WriteLine("tnStopPauseRepeatMediaOutAsync_Click: " + repeatDispTimer.IsEnabled.ToString());
+            // DispatcherTimer senderTimer = (DispatcherTimer)sender;
             BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
             BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;           
             BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);        
+
+
+        }
+
+        private void TgbCommandModeOn_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

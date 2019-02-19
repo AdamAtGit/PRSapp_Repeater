@@ -34,6 +34,9 @@
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Orientation" />
       <RootProperty Name="Children" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Margin" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
       <RootProperty Name="Icon" />
@@ -56,6 +59,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="Foreground" />
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="PRSapp.MainPage" />
@@ -71,6 +75,12 @@
       <RootProperty Name="Source" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.ToggleButton">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootEvent Name="Click" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ToggleSwitch">
       <RootProperty Name="Header" />
       <RootProperty Name="IsOn" />
@@ -91,6 +101,7 @@
       <RootProperty Name="Width" />
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="AcceptsReturn" />
+      <RootProperty Name="IsReadOnly" />
       <RootProperty Name="IsSpellCheckEnabled" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.MediaElement" />

@@ -16,41 +16,52 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBox x:ConnectionId='9' x:Name="boxTitleName" Text="Mental Prep Feb 15" 
+            <TextBox x:ConnectionId='10' x:Name="boxTitleName" Text="Mental Prep Feb 15" 
                     HorizontalAlignment="Center" VerticalAlignment="Top"
                      Margin="0 5"/>
-            <TextBox x:ConnectionId='10' x:Name="boxTtsRaw" Height="250" Width="350" TextWrapping="Wrap"
+            <TextBox x:ConnectionId='11' x:Name="boxTtsRaw" Height="250" Width="350" TextWrapping="Wrap"
                      AcceptsReturn="True"
-                     Text= "Set Alarms for 1 p.m.   
-                     Break Away. 
-                     Cancellation-Token-Source to stop async tasks." 
+                     IsReadOnly="False"
+                     Text= "Set Alarms 9:30.   
+                     Break Away."
                      IsSpellCheckEnabled="True"
-                     HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0 5"/>
+                     HorizontalAlignment="Center" VerticalAlignment="Top"
+                     Margin="0 5"/> <!--Cancellation-Token-Source stops async tasks.-->
         </StackPanel>
         
         <!--2nd row--> 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <AppBarButton x:ConnectionId='3'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"                    
+            <AppBarButton x:ConnectionId='4'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"                    
                                                                
                            Margin="0 0 0 10" Height="54"/> <!--Command="{Binding RepeatMediaOutAsyncCommand}"-->
 
-            <AppBarButton x:ConnectionId='4'  x:Name="BtnStopPauseRepeatMediaOutAsync" Label="Stop" Icon="Stop"
+            <AppBarButton x:ConnectionId='5'  x:Name="BtnStopPauseRepeatMediaOutAsync" Label="Stop" Icon="Stop"
                                                                        
-                          Visibility="Collapsed" Margin="0 0 0 10" Height="54"/> <!--Test commit n push through Git Bash-->
-
+                          Visibility="Collapsed" Margin="0 0 0 10" Height="54"/> <!--Test commit n push through Git Bash-->     
             
             
-            <ToggleSwitch x:ConnectionId='5' x:Name="TgsRepeats" Header="           Repeat" IsOn="True" Margin="5 10 0 0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-            <TextBox x:ConnectionId='6' x:Name="boxRepetitions" Text="1"  Header="    Times" FontSize="12" Margin="-52,0,66,0" Height="49" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <TextBox x:ConnectionId='7' x:Name="boxInterval"  Text="360" Header="How Often- Mins" FontSize="12" Height="50" Margin="-49,0,-43,0" />
-            <MediaElement x:ConnectionId='8' x:Name="uiMediaElement"/>
+            
+            <ToggleSwitch x:ConnectionId='6' x:Name="TgsRepeats" Header="           Repeat" IsOn="True" Margin="5 10 0 0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+            <TextBox x:ConnectionId='7' x:Name="boxRepetitions" Text="4"  Header="    Times" FontSize="12" Margin="-52,0,66,0" Height="49" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBox x:ConnectionId='8' x:Name="boxInterval"  Text="10" Header="How Often- Mins" FontSize="12" Height="50" Margin="-49,0,-43,0" />
+            <MediaElement x:ConnectionId='9' x:Name="uiMediaElement"/>
         </StackPanel>
 
         <!--3rd row-->
-        <StackPanel x:ConnectionId='2' x:Name="stpStatus" Orientation="Horizontal" Grid.Row="2" />
-        <TextBlock Text="Status" Height="Auto"/>
+        <StackPanel x:ConnectionId='2' x:Name="stpStatus" Grid.Row="2" Orientation="Horizontal" 
+                    Height="Auto" Background="Black">
+            <TextBlock Text="Status" FontSize="12" Foreground="WhiteSmoke"
+            Height="Auto" Margin="10 0 5 0"/>
+           
+        </StackPanel>
+
+        <!--4th row-->
+        <StackPanel Grid.Row="3" Margin="0 10" Height="Auto">
+            <ToggleButton x:ConnectionId='3' x:Name="TgbCommandModeOn"                                Width="40" Height="40" HorizontalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </UserControl>
 
