@@ -19,10 +19,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBox x:ConnectionId='11' x:Name="boxTitleName" Text="Mental Prep Feb 15" 
+            <TextBox x:ConnectionId='12' x:Name="boxTitleName" Text="Mental Prep Feb 15" 
                     HorizontalAlignment="Center" VerticalAlignment="Top"
                      Margin="0 5"/>
-            <TextBox x:ConnectionId='12' x:Name="boxTtsRaw" Height="250" Width="350" TextWrapping="Wrap"
+            <TextBox x:ConnectionId='13' x:Name="boxTtsRaw" Height="250" Width="350" TextWrapping="Wrap"
                      AcceptsReturn="True"
                      IsReadOnly="False"
                      Text= "Set Alarms 9:30.   
@@ -34,20 +34,20 @@
         
         <!--2nd row--> 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <AppBarButton x:ConnectionId='5'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"                    
+            <AppBarButton x:ConnectionId='6'  x:Name="BtnRepeatMediaOutAsync" Label="Play" Icon="play"                    
                                                                
                            Margin="0 0 0 10" Height="54"/> <!--Command="{Binding RepeatMediaOutAsyncCommand}"-->
 
-            <AppBarButton x:ConnectionId='6'  x:Name="BtnStopPauseRepeatMediaOutAsync" Label="Stop" Icon="Stop"
+            <AppBarButton x:ConnectionId='7'  x:Name="BtnStopPauseRepeatMediaOutAsync" Label="Stop" Icon="Stop"
                                                                        
                           Visibility="Collapsed" Margin="0 0 0 10" Height="54"/> <!--Test commit n push through Git Bash-->     
             
             
             
-            <ToggleSwitch x:ConnectionId='7' x:Name="TgsRepeats" Header="           Repeat" IsOn="True" Margin="5 10 0 0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-            <TextBox x:ConnectionId='8' x:Name="boxRepetitions" Text="4"  Header="    Times" FontSize="12" Margin="-52,0,66,0" Height="49" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <TextBox x:ConnectionId='9' x:Name="boxInterval"  Text="10" Header="How Often- Mins" FontSize="12" Height="50" Margin="-49,0,-43,0" />
-            <MediaElement x:ConnectionId='10' x:Name="uiMediaElement"/>
+            <ToggleSwitch x:ConnectionId='8' x:Name="TgsRepeats" Header="           Repeat" IsOn="True" Margin="5 10 0 0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
+            <TextBox x:ConnectionId='9' x:Name="boxRepetitions" Text="10"  Header="    Times" FontSize="12" Margin="-52,0,66,0" Height="49" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBox x:ConnectionId='10' x:Name="boxInterval"  Text="1" Header="How Often- Mins" FontSize="12" Height="50" Margin="-49,0,-43,0" />
+            <MediaElement x:ConnectionId='11' x:Name="uiMediaElement"/>
         </StackPanel>
 
         <!--3rd row-->
@@ -55,7 +55,7 @@
                     Height="Auto" Background="Black">
             <TextBlock Text="Status" FontSize="12" Foreground="WhiteSmoke"
             Height="Auto" Margin="10 0 5 0"/>
-            <TextBlock x:ConnectionId='4' x:Name="tbStatus" Text="1" FontSize="12" Foreground="WhiteSmoke"
+            <TextBlock x:ConnectionId='5' x:Name="tbStatus" Text="1" FontSize="12" Foreground="WhiteSmoke"
             Height="Auto" Width="Auto" Margin="10 0 5 0"/>
 
         </StackPanel>
@@ -63,6 +63,10 @@
         <!--4th row-->
         <StackPanel Grid.Row="3" Margin="0 10" Height="Auto">
             <ToggleButton x:ConnectionId='3' x:Name="TgbCommandModeOn"                                Width="40" Height="40" HorizontalAlignment="Center"/>
+            <Slider x:ConnectionId='4' x:Name="SdrSpeakAsyncProgress" 
+                    Value="0"  Pivot.SlideInAnimationGroup="GroupOne"
+                    TickFrequency="5"
+                    Margin="5 0"/>
         </StackPanel>
     </Grid>
 </UserControl>

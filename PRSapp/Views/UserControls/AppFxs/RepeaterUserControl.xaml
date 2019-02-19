@@ -45,8 +45,8 @@
             
             
             <ToggleSwitch x:Name="TgsRepeats" Header="           Repeat" IsOn="True" Margin="5 10 0 0" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89"/>
-            <TextBox x:Name="boxRepetitions" Text="4"  Header="    Times" FontSize="12" Margin="-52,0,66,0" Height="49" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <TextBox x:Name="boxInterval"  Text="10" Header="How Often- Mins" FontSize="12" Height="50" Margin="-49,0,-43,0" />
+            <TextBox x:Name="boxRepetitions" Text="10"  Header="    Times" FontSize="12" Margin="-52,0,66,0" Height="49" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBox x:Name="boxInterval"  Text="1" Header="How Often- Mins" FontSize="12" Height="50" Margin="-49,0,-43,0" />
             <MediaElement x:Name="uiMediaElement"/>
         </StackPanel>
 
@@ -63,6 +63,10 @@
         <!--4th row-->
         <StackPanel Grid.Row="3" Margin="0 10" Height="Auto">
             <ToggleButton x:Name="TgbCommandModeOn" Click="TgbCommandModeOn_Click" Width="40" Height="40" HorizontalAlignment="Center"/>
+            <Slider x:Name="SdrSpeakAsyncProgress" 
+                    Value="0"  Pivot.SlideInAnimationGroup="GroupOne"
+                    TickFrequency="5"
+                    Margin="5 0"/>
         </StackPanel>
     </Grid>
 </UserControl>
