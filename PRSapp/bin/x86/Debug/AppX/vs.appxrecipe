@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-02-19T08:09:35.776</Modified>
+      <Modified>2019-02-19T19:13:10.583</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\PRSapp.exe">
       <PackagePath>entrypoint\PRSapp.exe</PackagePath>
-      <Modified>2019-02-19T08:09:34.990</Modified>
+      <Modified>2019-02-19T19:13:08.055</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -535,27 +535,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\PRSapp.xr.xml">
       <PackagePath>PRSapp.xr.xml</PackagePath>
-      <Modified>2019-02-19T07:49:31.884</Modified>
+      <Modified>2019-02-19T18:59:34.181</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-02-19T08:09:34.463</Modified>
+      <Modified>2019-02-19T19:13:07.587</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2019-02-19T08:09:34.464</Modified>
+      <Modified>2019-02-19T19:13:07.589</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\Views\Pages\ManagePage.xbf">
       <PackagePath>Views\Pages\ManagePage.xbf</PackagePath>
-      <Modified>2019-02-19T08:09:34.465</Modified>
+      <Modified>2019-02-19T19:13:07.590</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\Views\Pages\PlayPage.xbf">
       <PackagePath>Views\Pages\PlayPage.xbf</PackagePath>
-      <Modified>2019-02-19T08:09:34.466</Modified>
+      <Modified>2019-02-19T19:13:07.591</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\Views\UserControls\AppFxs\RepeaterUserControl.xbf">
       <PackagePath>Views\UserControls\AppFxs\RepeaterUserControl.xbf</PackagePath>
-      <Modified>2019-02-19T08:09:34.466</Modified>
+      <Modified>2019-02-19T19:13:07.594</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17134.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -568,7 +568,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Flazz\source\repos\FebOn\April_Master\PRSapp\PRSapp\bin\x86\Debug\Core\PRSapp.exe">
       <PackagePath>PRSapp.exe</PackagePath>
-      <Modified>2019-02-19T08:09:35.754</Modified>
+      <Modified>2019-02-19T19:13:10.566</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

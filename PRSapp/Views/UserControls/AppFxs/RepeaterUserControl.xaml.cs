@@ -26,7 +26,7 @@ namespace PRSapp.Views.UserControls.AppFxs
         string ttsRaw = string.Empty;
 
         //stoping timer and speak async tasks inprogress
-        CancellationTokenSource cts;
+       // CancellationTokenSource cts;
 
         public RepeaterUserControl()
         {
@@ -41,53 +41,104 @@ namespace PRSapp.Views.UserControls.AppFxs
             Debug.WriteLine("TimerSetUp" + repeatDispTimer.IsEnabled.ToString());
         }
 
-        async Task<int> StopTestAsync(int _reps)
-        {
-            int reps = _reps + 1;
-            int totalTime = 0;
-            double ticksPlusIntervalSecs = 0;
-            double intervals;
+        #region another timer with slider hooked to it.
+        //async Task<int> StopTestAsync(int _reps)
+        //{
+        //    int reps = _reps + 1;
+        //    int totalTime = 0;
+        //    double ticksPlusIntervalSecs = 0;
+        //    double intervals;
 
-            DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = new TimeSpan(0, 0, Convert.ToInt16(boxInterval.Text));
-            intervals = Convert.ToInt16(boxInterval.Text);
-            dt.Start();
-            dt.Tick += Dt_Tick;
-            for (int ticks = 0; ticks < reps; ticks++)
-            {
-                ticksPlusIntervalSecs = ticksPlusIntervalSecs + (ticks + intervals);
-                Debug.WriteLine("dt.interval: " + dt.Interval.ToString());
-                Debug.WriteLine("ticks: " + ticks.ToString());
-                Debug.WriteLine("ticksPlusIntervalSecs accruing: "
-                                                + ticksPlusIntervalSecs.ToString());
-            }
-            //if (reps > Convert.ToInt16(boxRepetitions.Text))
-            //{
-            //    dt.Stop();
-            //}
-            Debug.WriteLine("\ndt.IsEnabled: " + dt.IsEnabled.ToString());
+        //    DispatcherTimer dt = new DispatcherTimer();
+        //    dt.Interval = new TimeSpan(0, 0, Convert.ToInt16(boxInterval.Text));
+        //    intervals = Convert.ToInt16(boxInterval.Text);
+        //    dt.Start();
+        //    dt.Tick += Dt_Tick;
+        //    for (int ticks = 0; ticks < reps; ticks++)
+        //    {
+        //        ticksPlusIntervalSecs = ticksPlusIntervalSecs + (ticks + intervals);
+        //        Debug.WriteLine("dt.interval: " + dt.Interval.ToString());
+        //        Debug.WriteLine("ticks: " + ticks.ToString());
+        //        Debug.WriteLine("ticksPlusIntervalSecs accruing: "
+        //                                        + ticksPlusIntervalSecs.ToString());
+        //    }   
+        //    //if (reps > Convert.ToInt16(boxRepetitions.Text))
+        //    //{
+        //    //    dt.Stop();
+        //    //}
+        //    Debug.WriteLine("\ndt.IsEnabled: " + dt.IsEnabled.ToString());
 
-            totalTime = Convert.ToInt16(ticksPlusIntervalSecs);
-            return (totalTime);
-        }
+        //    totalTime = Convert.ToInt16(ticksPlusIntervalSecs);
+        //    return (totalTime);
+        //}
 
-        private void Dt_Tick(object sender, object e)
-        {
-            SdrSpeakAsyncProgress.Value = SdrSpeakAsyncProgress.Value + 10;
-            Debug.WriteLine("\n\nSdrSpeakAsyncProgress.Value = + 1: "
-                                            + SdrSpeakAsyncProgress.Value.ToString());
-        }
+        //private void Dt_Tick(object sender, object e)
+        //{
+        //    SdrSpeakAsyncProgress.Value = SdrSpeakAsyncProgress.Value + 10;
+        //    Debug.WriteLine("\n\nSdrSpeakAsyncProgress.Value = + 1: "
+        //                                    + SdrSpeakAsyncProgress.Value.ToString());
+        //}
 
-        private async void TgbCommandModeOn_Click(object sender, RoutedEventArgs e)
-        {
 
-            TgbCommandModeOn.Foreground = new SolidColorBrush(Colors.DodgerBlue);
-            int reps;
-            reps = Convert.ToInt16(boxRepetitions.Text);
-            await StopTestAsync(reps);
-            TgbCommandModeOn.Foreground = new SolidColorBrush(Colors.DarkOrange);
-        }
+        //private async void TgbCommandModeOn_Click(object sender, RoutedEventArgs e)
+        //{          
+        //    TgbCommandModeOn.Foreground = new SolidColorBrush(Colors.DodgerBlue);
+        //    int reps;
+        //    reps = Convert.ToInt16(boxRepetitions.Text);         
+        //    await StopTestAsync(reps);
+        //    TgbCommandModeOn.Foreground = new SolidColorBrush(Colors.DarkOrange);
+        //}
+        #endregion
+        #region stop async method from https://stackoverflow.com/questions/15614991/simply-stop-an-async-method
+        ////bool playing;
+        //bool keepdoing = true;
+        //int count = 10;
+        //string text;
+        //private async void  TgbCommandModeOff_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (cts == null)
+        //    {
+        //        cts = new CancellationTokenSource();
+        //        try
+        //        {
+        //            await DoSomethingAsync("my text", cts.Token);
+        //        }
+        //        catch (OperationCanceledException)
+        //        {
+        //        }
+        //        finally
+        //        {
+        //            cts = null;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        cts.Cancel();
+        //        cts = null;
+        //    }
+        //}
 
+        //private async void DoSomethingAsync()
+        //{
+        //    playing = true;
+        //    for (int i = 0; keepdoing; count++)
+        //    {
+        //        await DoSomethingAsync(text, token);
+        //    }
+        //    playing = false;
+        //}
+
+        //private async Task DoSomethingAsync(string text, CancellationToken token)
+        //{
+        //    TgbCommandModeOff.IsChecked = true;
+        //    for (int i = 0; ; i++)
+        //    {
+        //        token.ThrowIfCancellationRequested();
+        //        await DoSomethingAsync(text, token);
+        //    }
+        //    TgbCommandModeOff.IsChecked = false;
+        //}
+        #endregion
 
         private void RepeatDispTimer_Tick(object sender, object e)
         {
@@ -99,7 +150,6 @@ namespace PRSapp.Views.UserControls.AppFxs
 
         private async void BtnRepeatMediaOutAsync_Click(object sender, RoutedEventArgs e)
         {
-
             BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
             BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
             if (TgsRepeats.IsOn)
@@ -190,7 +240,7 @@ namespace PRSapp.Views.UserControls.AppFxs
             BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
             BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
             BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);
-
-        }
+            SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+        }   
     }
 }
