@@ -10,6 +10,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.Media.SpeechRecognition;
 
 namespace PRSapp.Views.UserControls.AppFxs
 {
@@ -20,25 +21,26 @@ namespace PRSapp.Views.UserControls.AppFxs
         TimeSpan interval;//hh, mm, ss
         int timesToTick;
         int i = 0;
-
         int repetitions;
+       
         //Media Output Async 
         string ttsRaw = string.Empty;
 
-        //stoping timer and speak async tasks inprogress
-       // CancellationTokenSource cts;
+        //Speech User Settings
+      
+        public string VoiceGender = "female";
 
         public RepeaterUserControl()
         {
             this.InitializeComponent();
             TimerSetUp();
+            cboVoiceGender.SelectedIndex = cboVoiceGender.Items.Count - 1;
         }
 
         public void TimerSetUp()
         {
             repeatDispTimer.Tick += RepeatDispTimer_Tick;
-            ////repeatDispTimer.Interval = interval;
-            Debug.WriteLine("TimerSetUp" + repeatDispTimer.IsEnabled.ToString());
+            Debug.WriteLine("TimerSetUp: " + repeatDispTimer.IsEnabled.ToString());
         }
 
         #region another timer with slider hooked to it.
@@ -149,67 +151,97 @@ namespace PRSapp.Views.UserControls.AppFxs
         }
 
         private async void BtnRepeatMediaOutAsync_Click(object sender, RoutedEventArgs e)
-        {
-            BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
-            BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
+        {         
             if (TgsRepeats.IsOn)
             {
+              //  repeatDispTimer.Tick -= RepeatDispTimer_Tick;
+              //  TimerSetUp();
+                BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
+                BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
+                stpStatus.Visibility = Visibility.Visible;
                 tbStatus.Text = (i + 1).ToString();
+                repetitions = Convert.ToInt32(boxRepetitions.Text.Trim());
+                if (i == 0)
+                {
+                    int intervalinMins = Convert.ToInt32(boxInterval.Text.Trim());
+                    interval = new TimeSpan(0, intervalinMins, 0);
+                    repeatDispTimer.Interval = interval;
+                    timesToTick = (repetitions - 1);
+                }
+
+                BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Orange);
+                ttsRaw = boxTtsRaw.Text.Trim();
+                try
+                {
+                    await SpeakTextAsync(ttsRaw, uiMediaElement);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message.ToString());
+                }
+
+                // Start Repeater Timer
+                repeatDispTimer.Start();
+                Debug.WriteLine("BtnRepeatMediaOutAsync_Click " + timesToTick.ToString());
+                Debug.WriteLine("i = " + i.ToString());
+
+                // Stop timer when reps are complete
+                i++;
+                if (i > timesToTick)
+                {
+                    tbStatus.Text = "0";
+                    repeatDispTimer.Stop();
+                  //  repeatDispTimer.Tick -= RepeatDispTimer_Tick;
+                    BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
+                    BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
+                    BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);                  
+                    stpStatus.Visibility = Visibility.Collapsed;
+                    i = 0;
+                }
+                Debug.WriteLine(repeatDispTimer.IsEnabled.ToString());
             }
             else
             {
                 //Debug.Write("Hit tgsReapeats.IsOn//when is false");
-            }
-            repetitions = Convert.ToInt32(boxRepetitions.Text.Trim());
-            if (i == 0)
-            {
-                int intervalinSecs = Convert.ToInt32(boxInterval.Text.Trim());
-                interval = new TimeSpan(0, 0, intervalinSecs);
-                repeatDispTimer.Interval = interval;
-                timesToTick = (repetitions - 1);
-            }
-
-            BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Orange);
-            ttsRaw = boxTtsRaw.Text.Trim();
-            try
-            {
-                await SpeakTextAsync(ttsRaw, uiMediaElement);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message.ToString());
-            }
-
-            // Start Repeater Timer
-            repeatDispTimer.Start();
-            Debug.WriteLine("BtnRepeatMediaOutAsync_Click" + timesToTick.ToString());
-            Debug.WriteLine("i = " + i.ToString());
-
-            ////tbStatus.Text = (i + 1).ToString();
-
-            // Stop timer when reps are complete
-            i++;
-            if (i > timesToTick)
-            {
-                tbStatus.Text = "0";
-                repeatDispTimer.Stop();
-                BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
-                BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
-                BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);
-                i = 0;
-            }
-            Debug.WriteLine(repeatDispTimer.IsEnabled.ToString());
+                BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Orange);
+                ttsRaw = boxTtsRaw.Text.Trim();
+                try
+                {
+                    await SpeakTextAsync(ttsRaw, uiMediaElement);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message.ToString());
+                }
+            }        
         }
 
+        #region User Speech Settings
+        private void cboVoiceGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            VoiceGender = cboVoiceGender.SelectedValue.ToString();
+        }
+        #endregion
         #region Speech
         async Task<IRandomAccessStream> SynthesizeTextToSpeechAsync(string text)
         {
             // Windows.Storage.Streams.IRandomAccessStream
             IRandomAccessStream stream = null;
-
+          
             // Windows.Media.SpeechSynthesis.SpeechSynthesizer
             using (SpeechSynthesizer synthesizer = new SpeechSynthesizer())
             {
+                //// Select the US English voice.
+                //if (VoiceGender == "female")
+                //{
+
+                //   // synthesizer.Voice.Gender.voi = Windows.Media.SpeechSynthesis.VoiceGender.Female;
+                //    synthesizer.Options.AudioVolume = 100;
+                //}
+
+                //Volume Setting
+                //synthesizer.Options.AudioVolume = +100;
+
                 // Windows.Media.SpeechSynthesis.SpeechSynthesisStream
                 stream = await synthesizer.SynthesizeTextToStreamAsync(text);
             }
@@ -221,9 +253,12 @@ namespace PRSapp.Views.UserControls.AppFxs
             //TODO: ARS use link below to stop async tasks
             //https://stackoverflow.com/questions/15614991/simply-stop-an-async-method
 
-            BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
-            BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
-
+            //if(TgsRepeats.IsOn)
+            //{
+            //    BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Visible;
+            //    BtnRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
+            //    stpStatus.Visibility = Visibility.Visible;
+            //}
             IRandomAccessStream stream = await this.SynthesizeTextToSpeechAsync(text);
 
             await mediaElement.PlayStreamAsync(stream, true);
@@ -235,12 +270,18 @@ namespace PRSapp.Views.UserControls.AppFxs
             i = 0;
             tbStatus.Text = "0";
             repeatDispTimer.Stop();
-            Debug.WriteLine("tnStopPauseRepeatMediaOutAsync_Click: " + repeatDispTimer.IsEnabled.ToString());
-            // DispatcherTimer senderTimer = (DispatcherTimer)sender;
-            BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
-            BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
-            BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);
-            SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-        }   
+            Debug.WriteLine("tnStopPauseRepeatMediaOutAsync_Click: " 
+                + repeatDispTimer.IsEnabled.ToString());
+            //repeatDispTimer.Tick -= RepeatDispTimer_Tick;
+            Debug.WriteLine("\ntnStopPauseRepeatMediaOutAsync_Click\n after -=  : "
+                + repeatDispTimer.IsEnabled.ToString()); 
+            if(TgsRepeats.IsOn)
+            { 
+                BtnRepeatMediaOutAsync.Visibility = Visibility.Visible;
+                BtnStopPauseRepeatMediaOutAsync.Visibility = Visibility.Collapsed;
+                stpStatus.Visibility = Visibility.Collapsed;
+            }
+            BtnRepeatMediaOutAsync.Foreground = new SolidColorBrush(Windows.UI.Colors.Black);           
+        }       
     }
 }
